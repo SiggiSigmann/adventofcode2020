@@ -1,0 +1,11 @@
+{
+	"files.associations": {
+		"iosfwd": "cpp",
+		"iostream": "cpp"
+	},
+	"editor.detectIndentation": false,
+	"editor.rulers": [ 80 ],
+	"workbench.editor.showTabs": true,
+	"editor.renderWhitespace": "all",
+	"editor.insertSpaces": false,
+}
