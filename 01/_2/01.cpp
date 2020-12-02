@@ -12,6 +12,7 @@ using namespace std;
 # Returns finisflag 1= finished
 ##############################################################################*/
 int proccesNth(int *numbers, int length, int *offsets, int n, int i){
+	
 	int done = 0;
 	int start = 0;
 
@@ -20,7 +21,7 @@ int proccesNth(int *numbers, int length, int *offsets, int n, int i){
 		start = offsets[i-1]+1;
 	}
 	
-	for(offsets[i] = start; !done && (offsets[i])<length; (offsets[i])++){
+	for(offsets[i] = start; !done && (offsets[i])<(length-((n-1)-i)); (offsets[i])++){
 		//ceck if last recurence step
 		if((i+1) == n){
 			int sum = 0;

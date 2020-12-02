@@ -19,7 +19,7 @@ int process(int *numbers, int length){
 	//try all combination of two elements from the array
 	for(int i=0; running && i<length;i++){
 		toFind = 2020-numbers[i];
-		for(int j=i+1; j<length;j++){
+		for(int j=i+1; j<(length-1);j++){
 			if(toFind == numbers[j]){
 				found = numbers[j];
 				running = 0;
