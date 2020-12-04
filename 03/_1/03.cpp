@@ -5,16 +5,6 @@
 using namespace std;
 
 /*##############################################################################
-# depicts a database entry
-##############################################################################*/
-struct passwdEntry {
-  int min;
-  int max;
-  char c;
-  string passwd;
-} ;
-
-/*##############################################################################
 # counts number of lines in given file
 ##############################################################################*/
 int numberOfLines(string fileName, int *charPerLine){
