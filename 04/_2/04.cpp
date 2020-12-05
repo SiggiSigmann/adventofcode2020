@@ -299,6 +299,8 @@ int main(){
 	if(!res) return 1;
 
 	cout << "Number of accepted: " << res <<"\n";
+	
+	delete passport;
 
 	return 0;
 }

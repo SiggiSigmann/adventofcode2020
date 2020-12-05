@@ -87,5 +87,11 @@ int main(){
 
 	cout << "trees hit: " << res << "\n";
 
+	for(int i = 0; i<lineNumber; i++){
+		delete lines[i];
+	}
+	delete lines;
+
+
 	return 0;
 }

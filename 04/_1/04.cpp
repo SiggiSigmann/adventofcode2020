@@ -180,5 +180,7 @@ int main(){
 
 	cout << "Number of accepted: " << res <<"\n";
 
+	delete passports;
+
 	return 0;
 }

@@ -104,8 +104,10 @@ int main(){
 	
 	cout << "trees hit (multiplied): " << multiply << "\n";
 
-
-
+	for(int i = 0; i<lineNumber; i++){
+		delete lines[i];
+	}
+	delete lines;
 
 	return 0;
 }

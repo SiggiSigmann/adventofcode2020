@@ -139,5 +139,8 @@ int main(){
 
 	cout << "correct passwors: " << res << "\n";
 
+	delete lines;
+	delete entries;
+
 	return 0;
 }
