@@ -2,7 +2,6 @@
 #include <fstream>
 #include <string>
 #include <cmath>
-
 #include <bitset>
 
 using namespace std;
