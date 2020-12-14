@@ -66,28 +66,79 @@ void sortNumbers(int *numbers, int length){
 	}
 
 	numbers[length-1] = numbers[length-2]+3;
+
 }
 
 /*##############################################################################
-# coutn how many are one and tree apart
+# calc posibilities within a given branch
 ##############################################################################*/
-int findDistance(int *numbers, int length){
-	int one = 0, three = 0;
-	int disance;
-	//for eacht element
-	for(int i = 0; i<length-1; i++){
-		disance = numbers[i+1] - numbers[i];
-		switch (disance){
-			case 1:
-				one++;
-				break;
-			case 3:
-				three++;
-				break;
+int calcBranchCombinations(int *numbers, int start, int stop){
+	int res = 0;
+	//ceck if goal is reached
+	if(start == stop){
+		return 1;
+	}
+
+	//check if a new branch can be reached
+	int startValue = numbers[start];
+	for(int i = start+1; i<=stop; i++){
+		if(numbers[i]<=(startValue+3)){
+			res += calcBranchCombinations(numbers, i, stop);
 		}
 	}
 
-	return one*three;
+	//return result
+	return res;
+}
+
+/*##############################################################################
+# find how many branches exists per number and calculate posibilities form there
+# on until they merge again
+##############################################################################*/
+long long int findCombinations(int *numbers, int length){
+	//count branches
+	int *branch = new int[length];
+
+	//count branches for every entry
+	for(int i = 0; i<length; i++){
+		int countBranch = 0;
+		for(int j = i+1; j<length; j++){
+			if(numbers[j]<=(numbers[i]+3)) countBranch++;
+		}
+		branch[i] = countBranch;
+	}
+
+	//find index where banch starts and merge completly
+	int start = 0;
+	int lastItem = 0;
+	bool startFound = 0;
+
+	long long int res = 1;
+
+	//find where branches begin / stops
+	for(int i = 0; i<length; i++){
+		if(startFound){
+			//within a branch
+			if(branch[i] == 1){
+				//found end of a branch. Frome here ther is only one way to go
+				int toMul = calcBranchCombinations(numbers, start, lastItem+i-1);
+				res *= toMul;
+				startFound = 0;
+			}
+
+		}else{
+			if(branch[i] != 1){
+				//found begin of a branch
+				start = i;
+				startFound = 1;
+			}
+		}
+		lastItem = branch[i];
+	}
+
+	delete branch;
+
+	return res;
 }
 
 int main(){
@@ -105,9 +156,8 @@ int main(){
 	//execute sorting
 	sortNumbers(numbers, lineNumbers);
 
-	//calculate how many possible combinations
-	res = findDistance(numbers, lineNumbers);
-	cout << "sum 1 and 3 Distances: " << res << "\n";
+	long long int  resl = findCombinations(numbers, lineNumbers);
+	cout << "Combinations: " << resl << "\n";
 
 	delete numbers; 
 
